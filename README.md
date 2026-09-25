@@ -3,6 +3,8 @@
 > **IBM Bob Hackathon prototype.**
 > The agents in this demo are **simulated in TypeScript**. This is not a direct integration with IBM Bob or any IBM product. It is a working proof-of-concept illustrating the ContextLease concept.
 
+### 🚀 Live Demo: [https://pact-context-lease.vercel.app/](https://pact-context-lease.vercel.app/)
+
 ---
 
 ## The Problem
@@ -38,6 +40,14 @@ An agent that **owns** a contract (e.g. Backend) declares no dependency on it �
 | **2 — Backend Mutates** | Backend changes `api/login → /api/session` (v2). Frontend's lease is automatically marked **STALE**. Backend remains **ACTIVE** (it owns the contract). Data Model is **unaffected**. |
 | **3 — Frontend Blocked** | Frontend attempts a write. `PactStaleError` is thrown before any state is changed. Payload is untouched. |
 | **4 — Explicit Recovery** | Frontend reads the current contract (`api/login v2: /api/session`) and calls `issueLease` with the new version. A **new lease ID** is issued. The old lease stays permanently STALE. The new lease is ACTIVE and the write succeeds. |
+
+---
+
+## Live Demo
+
+**[https://pact-context-lease.vercel.app/](https://pact-context-lease.vercel.app/)**
+
+Use the **▶ Next Step** button to walk through the four steps. Use **↺ Reset** to restart.
 
 ---
 
